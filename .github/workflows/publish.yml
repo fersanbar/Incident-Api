@@ -18,5 +18,10 @@ jobs:
       - name: Build Docker Image
         run: docker build -t fersanbar/incident-api:${{ github.sha }} .
 
+      - name: Tag Latest
+        run: docker tag fersanbar/incident-api:${{ github.sha }} fersanbar/incident-api:latest
+
       - name: Push Docker Image
-        run: docker push fersanbar/incident-api:${{ github.sha }}
+        run: | 
+          docker push fersanbar/incident-api:${{ github.sha }}
+          docker push fersanbar/incident-api:latest
